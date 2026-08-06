@@ -22,8 +22,8 @@
   --text-main: #f0f2f5;
   --text-muted: rgba(240, 242, 245, 0.65);
   --text-dim: rgba(240, 242, 245, 0.35);
-  --brand-blue: #3E60B8;
-  --brand-blue-hover: #2B499A;
+  --brand-blue: #1d4ed8;
+  --brand-blue-hover: #1e40af;
   --nav-bg: rgba(16, 18, 24, 0.85);
   --card-bg: rgba(20, 23, 31, 0.75);
   --border-color: rgba(255, 255, 255, 0.12);
@@ -366,8 +366,6 @@ body {
   position: relative;
   width: 100%;
   font-size: inherit;
-  min-height: 2.25em;
-  margin-bottom: 0.05em;
 }
 
 .hero-text-row {
@@ -381,7 +379,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.3em 0.6em;
+  gap: 0.15em 0.35em;
   user-select: none;
   position: relative;
   width: 100%;
@@ -396,7 +394,7 @@ body {
   line-height: 1.05;
   letter-spacing: -0.04em;
   color: var(--brand-blue);
-  margin-top: 0.1em;
+  margin-top: 0em;
   position: relative;
   z-index: 5;
   width: max-content;
@@ -598,8 +596,8 @@ body {
   border: 1px solid var(--border-color);
   background: var(--card-bg);
   border-radius: 12px;
-  padding: 30px;
-  min-height: 260px;
+  padding: clamp(16px, 2.5vw, 30px);
+  min-height: clamp(160px, 20vw, 260px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -613,7 +611,7 @@ body {
 
 .wireframe-media {
   width: 100%;
-  height: 280px;
+  height: clamp(140px, 18vw, 280px);
   background: var(--text-dim);
   border: 1px dashed var(--border-color);
   border-radius: 8px;
@@ -648,30 +646,132 @@ body {
   width: 40%;
 }
 
-.timeline-track {
+/* ── Horizontal Scroll-Driven Timeline ── */
+
+.timeline-scroll-wrapper {
+  height: 400vh; /* Extra scroll room for the animation */
   position: relative;
-  border-left: 2px solid var(--border-color);
-  margin-left: 20px;
-  padding-left: 32px;
+}
+
+.timeline-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  justify-content: center;
+  padding: 60px 80px;
+  overflow: hidden; /* contain the canvas overlay */
 }
 
-.timeline-node {
+.h-timeline-track-container {
   position: relative;
+  width: 100%;
+  height: 200px;
+  margin: 40px 0 20px;
 }
 
-.timeline-bullet {
+/* The sumo bot canvas walks along the line, centered on the rail */
+.h-timeline-bot {
   position: absolute;
-  left: -40px;
-  top: 4px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.h-timeline-bot canvas {
+  overflow: visible !important;
+  background: transparent !important;
+}
+
+/* The grey rail background */
+.h-timeline-rail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-color);
+  transform: translateY(-50%);
+}
+
+/* The colored fill that grows left to right */
+.h-timeline-fill {
+  height: 100%;
   background: var(--brand-blue);
-  border: 3px solid var(--bg-color);
-  box-shadow: 0 0 0 2px var(--border-color);
+  transition: width 0.05s linear;
+}
+
+/* Dots container */
+.h-timeline-nodes {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0;
+}
+
+/* Individual dot */
+.h-timeline-dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.h-timeline-dot.passed {
+  background: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: #fff;
+}
+
+/* Content area — all stage infos stack on top of each other */
+.h-timeline-content {
+  position: relative;
+  height: 120px;
+  margin-top: 32px;
+}
+
+.h-timeline-stage-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.h-timeline-stage-info.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.h-timeline-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  margin: 6px 0 10px;
+}
+
+.h-timeline-desc {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
 }
 
 .timeline-date {
@@ -771,14 +871,206 @@ body {
   color: var(--brand-blue);
 }
 
-.footer-bottom {
-  max-width: 1400px;
-  margin: 40px auto 0;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-muted);
+/* ══════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ══════════════════════════════════════════ */
+
+/* ── Tablet (≤ 900px) ── */
+@media (max-width: 900px) {
+
+  /* Hero */
+  .hero-text-block {
+    font-size: clamp(40px, 8vw, 80px);
+  }
+
+  .hero-drone-layer {
+    width: 55vw;
+    right: -5vw;
+  }
+
+  /* Content sections */
+  .content-section {
+    padding: 80px 20px;
+    min-height: auto;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  /* Grids */
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Timeline — shrink padding */
+  .timeline-sticky {
+    padding: 40px 32px;
+  }
+
+  .h-timeline-title {
+    font-size: 18px;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
+
+/* ── Mobile (≤ 640px) ── */
+@media (max-width: 640px) {
+
+  /* Navbar */
+  .navbar {
+    height: 52px;
+    padding: 0 14px;
+  }
+
+  .nav-logo-img {
+    height: 22px;
+  }
+
+  .nav-brand-text {
+    font-size: 14px;
+  }
+
+  /* Hero */
+  .hero-wrapper {
+    height: 250vh;
+  }
+
+  .hero-text-block {
+    font-size: clamp(32px, 10vw, 60px);
+  }
+
+  .hero-drone-layer {
+    width: 80vw;
+    right: -12vw;
+    opacity: 0.6;
+  }
+
+  /* Content sections */
+  .content-section {
+    padding: 64px 16px;
+  }
+
+  .section-title {
+    font-size: clamp(22px, 6vw, 32px);
+  }
+
+  .section-subtitle {
+    font-size: 11px;
+  }
+
+  /* Grids → single column */
+  .grid-cols-3,
+  .grid-cols-4,
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Wireframe cards */
+  .wireframe-card {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .wireframe-media {
+    height: 180px;
+  }
+
+  /* FAQ */
+  .faq-item {
+    padding: 16px 18px;
+    font-size: 13px;
+  }
+
+  /* Footer */
+  .minimal-footer {
+    padding: 40px 16px 24px;
+    margin-top: 40px;
+  }
+
+  .footer-socials {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Timeline — vertical fallback on mobile */
+  .timeline-scroll-wrapper {
+    height: auto;
+  }
+
+  .timeline-sticky {
+    position: relative;
+    top: auto;
+    height: auto;
+    padding: 60px 16px;
+    overflow: visible;
+  }
+
+  .h-timeline-track-container {
+    display: none; /* Hide horizontal track on mobile */
+  }
+
+  /* Mobile vertical timeline replacement */
+  .h-timeline-content {
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .h-timeline-stage-info {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    border-left: 3px solid var(--border-color);
+    padding-left: 16px;
+    transition: border-color 0.3s;
+  }
+
+  .h-timeline-stage-info.active {
+    border-left-color: var(--brand-blue);
+    transform: none;
+  }
+
+  .h-timeline-title {
+    font-size: 16px;
+  }
+
+  /* Hide the 3D canvas on mobile for performance */
+  .timeline-sticky > canvas {
+    display: none;
+  }
+}
+
+/* ── Small phones (≤ 390px) ── */
+@media (max-width: 390px) {
+
+  .hero-text-block {
+    font-size: clamp(26px, 11vw, 48px);
+  }
+
+  .hero-drone-layer {
+    display: none;
+  }
+
+  .section-title {
+    font-size: clamp(18px, 7vw, 28px);
+  }
+
+  .navbar {
+    height: 48px;
+  }
 }

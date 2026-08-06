@@ -50,10 +50,7 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <div>&copy; 2026 ARES ROBOTICS NSUT. ALL RIGHTS RESERVED.</div>
-        <div style={{ color: 'var(--text-dim)' }}>MINIMALIST ENGINEERING SYSTEM</div>
-      </div>
+
     </footer>
   );
 };

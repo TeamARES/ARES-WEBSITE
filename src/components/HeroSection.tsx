@@ -22,6 +22,9 @@ export const HeroSection: React.FC = () => {
       tl.add('.ew-over',       { maxWidth: ['0ch', '5.2ch'] }, 0);
       tl.add('.ew-mbedded',    { maxWidth: ['0ch', '8.5ch'] }, 0);
       tl.add('.ew-ystems',     { maxWidth: ['0ch', '7.3ch'] }, 0);
+      
+      tl.add('.hero-rows-container', { fontSize: ['1em', '0.65em'] }, 0);
+      tl.add('.hero-robotics',       { fontSize: ['1em', '0.65em'] }, 0);
 
       timelineRef.current = tl;
     };
@@ -46,28 +49,20 @@ export const HeroSection: React.FC = () => {
       timelineRef.current.seek(revealP * timelineRef.current.duration);
 
       if (drone) {
-        const expandP = Math.min(1, p / 0.75);
-        const exitP   = Math.max(0, (p - 0.75) / 0.25);
+        // Fly completely off the screen to the left (-120vw)
+        const droneX = -(p * 120); 
+        
+        // Wavy up and down motion (1.5 full waves, smaller amplitude)
+        const droneY = 95 + Math.sin(p * Math.PI * 3) * 45;
+        
+        // Tilt slightly as it flies up and down
+        const droneRot = -7 + Math.cos(p * Math.PI * 3) * 8;
 
-        const droneX   = -(expandP * 340) - (exitP * 1200);
-        const droneY   = 95 + Math.sin(expandP * Math.PI) * 45;
-        const droneRot = Math.cos(expandP * Math.PI) * -7;
-        const opacity  = 1 - exitP;
+        // Shrink slightly as it travels away (scale down to 50%)
+        const droneScale = 1 - (p * 0.5);
 
-        drone.style.transform = `translateY(calc(-50% + ${droneY}px)) translateX(${droneX}px) rotate(${droneRot}deg)`;
-        drone.style.opacity   = String(opacity);
-      }
-
-      const textBlock = document.querySelector('.hero-text-block') as HTMLElement | null;
-      if (textBlock) {
-        const exitP = Math.max(0, (p - 0.75) / 0.25);
-        if (exitP > 0) {
-          textBlock.style.transform = `translateX(${exitP * 110}vw)`;
-          textBlock.style.opacity   = String(1 - exitP);
-        } else {
-          textBlock.style.transform = '';
-          textBlock.style.opacity   = '';
-        }
+        drone.style.transform = `translateY(calc(-50% + ${droneY}px)) translateX(${droneX}vw) rotate(${droneRot}deg) scale(${droneScale})`;
+        drone.style.opacity   = '1';
       }
 
       rafId = requestAnimationFrame(tick);
