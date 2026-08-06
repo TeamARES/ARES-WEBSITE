@@ -370,7 +370,7 @@ body {
   margin-bottom: 0.05em;
 }
 
-.hero-line {
+.hero-text-row {
   font-family: var(--font-display);
   font-size: inherit;
   font-weight: 900;
@@ -379,31 +379,24 @@ body {
   text-transform: uppercase;
   letter-spacing: -0.04em;
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.6em;
+  gap: 0.3em 0.6em;
   user-select: none;
-  white-space: nowrap;
   position: relative;
-  width: max-content;
+  width: 100%;
+  max-width: 1200px;
   align-self: flex-start;
 }
 
-.hero-ar-row {
-  position: relative;
-  width: max-content;
-}
-
-.hero-es-row {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: max-content;
-  will-change: transform;
-}
-
 .hero-robotics {
+  font-family: var(--font-display);
+  font-size: inherit;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   color: var(--brand-blue);
-  margin-top: 0.3em;
+  margin-top: 0.1em;
   position: relative;
   z-index: 5;
   width: max-content;
@@ -469,7 +462,7 @@ body {
 }
 
 @media (max-width: 1024px) {
-  .hero-line {
+  .hero-text-row, .hero-robotics {
     font-size: clamp(34px, 4.8vw, 76px);
   }
 

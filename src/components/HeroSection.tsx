@@ -5,71 +5,23 @@ export const HeroSection: React.FC = () => {
   const heroWrapperRef = useRef<HTMLDivElement>(null);
   const timelineRef    = useRef<any>(null);
   const canvasRef      = useRef<HTMLDivElement>(null);
-  const arRowRef       = useRef<HTMLDivElement>(null);
-  const esRowRef       = useRef<HTMLDivElement>(null);
   const roboticsRef    = useRef<HTMLDivElement>(null);
   const droneRef       = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const arRow = arRowRef.current;
-    const esRow = esRowRef.current;
-    if (!arRow || !esRow) return;
-
     const buildTimeline = () => {
-      if (!arRowRef.current || !esRowRef.current || !canvasRef.current || !roboticsRef.current) return;
-      
-      const initials = arRowRef.current.querySelectorAll('.hero-initial');
-      let esInitX = 0;
-      if (initials.length >= 2) {
-        const widthA = (initials[0] as HTMLElement).getBoundingClientRect().width;
-        const widthR = (initials[1] as HTMLElement).getBoundingClientRect().width;
-        const fontSize = parseFloat(getComputedStyle(arRowRef.current).fontSize);
-        const gap = fontSize * 0.60;
-        esInitX = widthA + widthR + gap * 2;
-      } else {
-        const arWidth = arRowRef.current.getBoundingClientRect().width;
-        const fontSize = parseFloat(getComputedStyle(arRowRef.current).fontSize);
-        esInitX = arWidth + fontSize * 0.60;
-      }
-
       const segments = heroWrapperRef.current?.querySelectorAll('.expand-segment') as NodeListOf<HTMLElement>;
-      segments?.forEach(el => el.style.maxWidth = 'none');
-
-      const canvasWidth     = canvasRef.current.getBoundingClientRect().width;
-      const arExpandedWidth = arRowRef.current.getBoundingClientRect().width;
-      const esExpandedWidth = esRowRef.current.getBoundingClientRect().width;
-      const roboticsWidth   = roboticsRef.current.getBoundingClientRect().width;
-
       segments?.forEach(el => el.style.maxWidth = '');
-
-      const arCenterX       = Math.max(0, (canvasWidth - arExpandedWidth) / 2);
-      const esCenterX       = Math.max(0, (canvasWidth - esExpandedWidth) / 2);
-      const roboticsCenterX = Math.max(0, (canvasWidth - roboticsWidth) / 2);
-      const rowDropY        = arRowRef.current.getBoundingClientRect().height * 1.25;
 
       const tl = createTimeline({
         autoplay: false,
         defaults: { ease: 'linear', duration: 800 },
       });
 
-      tl.add(arRowRef.current, {
-        translateX: [0, arCenterX],
-        translateY: [0, '-0.14em'],
-      }, 0);
       tl.add('.ew-utomated',   { maxWidth: ['0ch', '9.5ch'] }, 0);
       tl.add('.ew-over',       { maxWidth: ['0ch', '5.2ch'] }, 0);
-
-      tl.add(esRowRef.current, {
-        translateX: [esInitX, esCenterX],
-        translateY: [0, rowDropY],
-      }, 0);
       tl.add('.ew-mbedded',    { maxWidth: ['0ch', '8.5ch'] }, 0);
       tl.add('.ew-ystems',     { maxWidth: ['0ch', '7.3ch'] }, 0);
-
-      tl.add(roboticsRef.current, {
-        translateX: [0, roboticsCenterX],
-        translateY: [0, '0.45em'],
-      }, 0);
 
       timelineRef.current = tl;
     };
@@ -137,7 +89,7 @@ export const HeroSection: React.FC = () => {
 
             <div className="hero-rows-container">
 
-              <div className="hero-line hero-ar-row layer-front" ref={arRowRef}>
+              <div className="hero-text-row layer-front">
                 <span className="letter-block">
                   <span className="hero-initial">A</span>
                   <span className="expand-segment ew-utomated">UTOMATED</span>
@@ -146,13 +98,6 @@ export const HeroSection: React.FC = () => {
                   <span className="hero-initial">R</span>
                   <span className="expand-segment ew-over">OVER</span>
                 </span>
-              </div>
-
-              <div className="hero-drone-layer" ref={droneRef}>
-                <img src="/ARES.png" alt="ARES Drone" className="hero-drone-pic" />
-              </div>
-
-              <div className="hero-line hero-es-row layer-mid-front" ref={esRowRef}>
                 <span className="letter-block">
                   <span className="hero-initial">E</span>
                   <span className="expand-segment ew-mbedded">MBEDDED</span>
@@ -163,9 +108,13 @@ export const HeroSection: React.FC = () => {
                 </span>
               </div>
 
+              <div className="hero-drone-layer" ref={droneRef}>
+                <img src="/ARES.png" alt="ARES Drone" className="hero-drone-pic" />
+              </div>
+
             </div>
 
-            <div className="hero-line hero-robotics layer-back" ref={roboticsRef}>ROBOTICS</div>
+            <div className="hero-robotics layer-back" ref={roboticsRef}>ROBOTICS</div>
 
           </div>
 
