@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { animate } from 'animejs';
-import { Navbar }            from './components/Navbar';
-import { HeroSection }       from './components/HeroSection';
+import { Navbar } from './components/Navbar';
+import { HeroSection } from './components/HeroSection';
 import { DepartmentsSection } from './components/DepartmentsSection';
-import { MembersSection }    from './components/MembersSection';
-import { ProjectsSection }   from './components/ProjectsSection';
-import { EventsSection }     from './components/EventsSection';
+import { MembersSection } from './components/MembersSection';
+import { ProjectsSection } from './components/ProjectsSection';
 import { RecruitmentSection } from './components/RecruitmentSection';
-import { FaqSection }        from './components/FaqSection';
-import { Footer }            from './components/Footer';
+import { FaqSection } from './components/FaqSection';
+import { Footer } from './components/Footer';
+import { CompetitionsSection } from './components/CompetitionsSection';
 
 function App() {
   useEffect(() => {
@@ -74,7 +74,7 @@ function App() {
         <DepartmentsSection />
         <MembersSection />
         <ProjectsSection />
-        <EventsSection />
+        <CompetitionsSection />
         <RecruitmentSection />
         <FaqSection />
       </main>

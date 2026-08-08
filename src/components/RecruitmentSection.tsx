@@ -4,10 +4,11 @@ import { Environment } from '@react-three/drei';
 import { SumoBotModel } from './SumoBotModel';
 
 const STAGES = [
-  { num: 1, label: 'STAGE 01', title: 'RECRUITMENT_ROUND_1_NAME', desc: '[ CRITERIA_AND_REQUIREMENTS_UNSPECIFIED ]' },
-  { num: 2, label: 'STAGE 02', title: 'RECRUITMENT_ROUND_2_NAME', desc: '[ CRITERIA_AND_REQUIREMENTS_UNSPECIFIED ]' },
-  { num: 3, label: 'STAGE 03', title: 'RECRUITMENT_ROUND_3_NAME', desc: '[ CRITERIA_AND_REQUIREMENTS_UNSPECIFIED ]' },
-  { num: 4, label: 'STAGE 04', title: 'RECRUITMENT_ROUND_4_NAME', desc: '[ CRITERIA_AND_REQUIREMENTS_UNSPECIFIED ]' },
+  { num: 1, label: 'STAGE 01', title: 'Discover ARES', desc: 'Attend our orientation session and explore our vision, projects, culture, and the opportunities waiting for you.' },
+  { num: 2, label: 'STAGE 02', title: 'Submit Your Application', desc: 'Fill out the recruitment form and choose the department where your skills and interests belong.' },
+  { num: 3, label: 'STAGE 03', title: 'Showcase Your Skills', desc: 'Complete the department-specific task or technical assessment designed to evaluate your creativity, knowledge, and problem-solving abilities. (For Electronics and Mechanical, this may include an assessment.)' },
+  { num: 4, label: 'STAGE 04', title: 'Personal Interview', desc: 'Interact with our core members in a personal interview where we get to know your passion, mindset, and potential.' },
+  { num: 5, label: 'STAGE 05', title: 'Welcome to ARES', desc: 'Congratulations! You’re now part of ARES Robotics Society—ready to innovate, collaborate, and build the future with us.' }
 ];
 
 export const RecruitmentSection: React.FC = () => {
@@ -41,7 +42,7 @@ export const RecruitmentSection: React.FC = () => {
           <div className="section-title">
             <span className="section-num">05</span>
             <span>RECRUITMENT TIMELINE</span>
-          </div>
+
           <div className="section-subtitle">Annual Onboarding &amp; Selection Stages</div>
         </div>
 
