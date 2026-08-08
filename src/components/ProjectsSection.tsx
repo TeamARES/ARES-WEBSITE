@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, HardDrive, MapPin, Calendar, Code, Cpu } from 'lucide-react';
+import { Box, HardDrive } from 'lucide-react';
 
 const CADProjects = [
   {
@@ -10,7 +10,7 @@ const CADProjects = [
     department: 'Hardware / FPV',
     software: 'Autodesk Fusion 360',
     technologies: ['Carbon Fiber', 'Brushless Motors', 'Betaflight', 'ExpressLRS'],
-    previewImage: '/@fs/Users/aniketsharma/.gemini/antigravity-ide/brain/6dada9cf-fb91-4a03-a3b6-812eb378abce/media__1786030041976.png'
+    previewImage: '/projects/drone.jpg'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const CADProjects = [
     department: 'Hardware / Robotics',
     software: 'Autodesk Fusion 360',
     technologies: ['Aluminum Extrusion', 'Independent Suspension', 'ROS2', 'LIDAR'],
-    previewImage: '/@fs/Users/aniketsharma/.gemini/antigravity-ide/brain/6dada9cf-fb91-4a03-a3b6-812eb378abce/media__1786030039545.png'
+    previewImage: '/projects/rover.jpg'
   }
 ];
 
@@ -143,6 +143,7 @@ export const ProjectsSection: React.FC = () => {
                   <img 
                     src={project.previewImage} 
                     alt={`Preview of ${project.title}`}
+                    className="project-image"
                     style={{
                       width: '100%',
                       height: '100%',
@@ -150,7 +151,8 @@ export const ProjectsSection: React.FC = () => {
                       position: 'absolute',
                       top: 0,
                       left: 0,
-                      zIndex: 0
+                      zIndex: 0,
+                      transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
                   />
                   <div style={{ position: 'absolute', top: '16px', right: '16px', display: 'flex', gap: '8px' }}>
