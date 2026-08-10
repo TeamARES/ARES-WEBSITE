@@ -1226,3 +1226,8 @@ body {
     height: 48px;
   }
 }
+
+/* Projects Section Hover Zoom */
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
