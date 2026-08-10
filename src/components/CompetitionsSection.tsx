@@ -62,7 +62,7 @@ export const CompetitionsSection: React.FC = () => {
                 display: 'flex'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', flex: 1, minWidth: '300px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', flex: 1, minWidth: '200px' }}>
                 <div style={{ padding: '12px', border: '1px solid var(--border-color)', borderRadius: '10px', background: 'var(--bg-color)', color: 'var(--brand-blue)', flexShrink: 0 }}>
                   <CompIcon size={24} />
                 </div>

@@ -209,7 +209,7 @@ export const ProjectsSection: React.FC = () => {
             <span style={{ flex: 1, height: '1px', background: 'var(--border-color)' }}></span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
             {UpcomingEvents.map((event) => {
               const isActive = activeEventId === event.id;
               
