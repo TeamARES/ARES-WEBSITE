@@ -68,7 +68,7 @@ const RoleCard = ({ role, members }: { role: string, members: string[] }) => {
         {members.map((member, i) => {
           const photoData = memberImages[member];
           return (
-            <div key={i} style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '200px', margin: '0 auto' }}>
               {photoData ? (
                 <div style={{ width: '100%', aspectRatio: '3 / 4', marginBottom: '16px', borderRadius: '8px', border: '1px solid var(--border-color)', backgroundColor: 'var(--card-bg)', overflow: 'hidden' }}>
                   <img
