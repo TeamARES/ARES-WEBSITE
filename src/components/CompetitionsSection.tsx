@@ -67,10 +67,10 @@ export const CompetitionsSection: React.FC = () => {
                   <CompIcon size={24} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '800', marginBottom: '8px', lineHeight: '1.2' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: '800', marginBottom: '8px', lineHeight: '1.2' }}>
                     {comp.title}
                   </div>
-                  <div style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                  <div style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(12px, 3vw, 14px)', color: 'var(--text-muted)', lineHeight: '1.6' }}>
                     {comp.description}
                   </div>
                 </div>

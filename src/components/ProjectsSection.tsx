@@ -164,24 +164,24 @@ export const ProjectsSection: React.FC = () => {
 
                 <div style={{ padding: '30px' }}>
                   <div className="wireframe-tag">{project.tag}</div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26px', fontWeight: '800', margin: '8px 0 16px 0' }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px, 5vw, 26px)', fontWeight: '800', margin: '8px 0 16px 0' }}>
                     {project.title}
                   </h3>
                   
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '24px' }}>
+                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(12px, 3vw, 14px)', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '24px' }}>
                     {project.description}
                   </p>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <Box size={16} style={{ color: 'var(--brand-blue)' }} />
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text-main)' }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(10px, 2.5vw, 12px)', color: 'var(--text-main)' }}>
                         <span style={{ color: 'var(--text-muted)' }}>DEPT //</span> {project.department}
                       </span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <HardDrive size={16} style={{ color: 'var(--brand-blue)' }} />
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text-main)' }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(10px, 2.5vw, 12px)', color: 'var(--text-main)' }}>
                          <span style={{ color: 'var(--text-muted)' }}>TOOL //</span> {project.software}
                       </span>
                     </div>
@@ -189,7 +189,7 @@ export const ProjectsSection: React.FC = () => {
 
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', borderTop: '1px solid var(--border-color)', paddingTop: '20px', marginTop: '24px' }}>
                     {project.technologies.map((tech, i) => (
-                      <span key={i} style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: '600', color: 'var(--text-muted)', padding: '4px 10px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '6px', letterSpacing: '0.5px' }}>
+                      <span key={i} style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(9px, 2.5vw, 11px)', fontWeight: '600', color: 'var(--text-muted)', padding: '4px 10px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '6px', letterSpacing: '0.5px' }}>
                         {tech}
                       </span>
                     ))}
@@ -255,11 +255,11 @@ export const ProjectsSection: React.FC = () => {
                   
                   <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1, background: 'var(--card-bg)', borderRadius: '0 0 12px 12px', position: 'relative', zIndex: 2 }}>
                     <div className="wireframe-tag" style={{ marginBottom: '10px' }}>{event.tag}</div>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '800', margin: '0 0 12px 0' }}>
+                    <h3 className="event-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(16px, 4vw, 20px)', fontWeight: '800', marginBottom: '8px' }}>
                       {event.title}
                     </h3>
                     
-                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '16px', flexGrow: 1 }}>
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(12px, 3vw, 14px)', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '16px', flexGrow: 1 }}>
                       {event.description}
                     </p>
                     

@@ -105,25 +105,25 @@ export const DepartmentsSection: React.FC = () => {
               <div className="wireframe-tag">
                 [ DEPT ]
               </div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: '800', marginTop: '16px', letterSpacing: '-0.02em', color: 'var(--text-main)' }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px, 5vw, 24px)', fontWeight: '800', marginTop: '16px', letterSpacing: '-0.02em', color: 'var(--text-main)' }}>
                 {dept.name}
               </h3>
-              <div style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', fontWeight: '600', color: 'var(--brand-blue)', marginTop: '6px' }}>
+              <div style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(12px, 3vw, 14px)', fontWeight: '600', color: 'var(--brand-blue)', marginTop: '6px' }}>
                 {dept.tagline}
               </div>
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', color: 'var(--text-muted)', marginTop: '12px', lineHeight: '1.6' }}>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(12px, 3vw, 14px)', color: 'var(--text-muted)', marginTop: '12px', lineHeight: '1.6' }}>
                 {dept.description}
               </p>
             </div>
             
             <div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-main)', fontWeight: '700', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(10px, 2.5vw, 11px)', color: 'var(--text-main)', fontWeight: '700', marginBottom: '14px', textTransform: 'uppercase', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ width: '4px', height: '4px', background: 'var(--brand-blue)', borderRadius: '50%' }}></span>
                 Core Focus
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {dept.responsibilities.map((resp, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: 'var(--text-muted)', fontFamily: 'var(--font-sans)', lineHeight: '1.4' }}>
+                  <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: 'clamp(12px, 3vw, 13px)', color: 'var(--text-muted)', fontFamily: 'var(--font-sans)', lineHeight: '1.4' }}>
                     <span style={{ color: 'var(--text-dim)', marginTop: '1px', fontFamily: 'var(--font-mono)' }}>+</span>
                     {resp}
                   </li>
@@ -133,7 +133,7 @@ export const DepartmentsSection: React.FC = () => {
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>
               {dept.tools.map((tool, i) => (
-                <span key={i} style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: '600', color: 'var(--text-muted)', padding: '4px 10px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '6px', letterSpacing: '0.5px' }}>
+                <span key={i} style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(9px, 2.5vw, 11px)', fontWeight: '600', color: 'var(--text-muted)', padding: '4px 10px', background: 'var(--bg-color)', border: '1px solid var(--border-color)', borderRadius: '6px', letterSpacing: '0.5px' }}>
                   {tool}
                 </span>
               ))}

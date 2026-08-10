@@ -89,7 +89,7 @@ const RoleCard = ({ role, members }: { role: string, members: string[] }) => {
                   <span style={{ fontSize: '11px', letterSpacing: '1px' }}>[ PHOTO ]</span>
                 </div>
               )}
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: '800', color: 'var(--text-main)', letterSpacing: '-0.02em', lineHeight: '1.2' }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(13px, 3.5vw, 16px)', fontWeight: '800', color: 'var(--text-main)', letterSpacing: '-0.02em', lineHeight: '1.2' }}>
                 {member}
               </div>
             </div>
