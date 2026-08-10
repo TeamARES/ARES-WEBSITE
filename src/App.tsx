@@ -43,13 +43,15 @@ function LenisSetup() {
     const observerCallback: IntersectionObserverCallback = (entries, obs) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          animate(entry.target, {
+          const target = entry.target as HTMLElement;
+          target.dataset.revealed = 'true';
+          animate(target, {
             translateY: [50, 0],
             opacity: [0, 1],
             duration: 900,
             delay: index * 80,
           });
-          obs.unobserve(entry.target);
+          obs.unobserve(target);
         }
       });
     };
@@ -59,19 +61,22 @@ function LenisSetup() {
       threshold: 0.08,
     });
 
-    const revealTimer = setTimeout(() => {
+    // Request animation frame ensures DOM is fully painted before we query and hide
+    const rafHide = requestAnimationFrame(() => {
       document.querySelectorAll('.content-section, .wireframe-card, .faq-item, .minimal-footer').forEach((el) => {
         const htmlEl = el as HTMLElement;
-        htmlEl.style.opacity = '0';
-        htmlEl.style.transform = 'translateY(50px)';
-        observer.observe(htmlEl);
+        if (htmlEl.dataset.revealed !== 'true') {
+          htmlEl.style.opacity = '0';
+          htmlEl.style.transform = 'translateY(50px)';
+          observer.observe(htmlEl);
+        }
       });
-    }, 200);
+    });
 
     return () => {
       lenis.destroy();
       cancelAnimationFrame(rafId);
-      clearTimeout(revealTimer);
+      cancelAnimationFrame(rafHide);
       observer.disconnect();
     };
   }, [pathname]);
