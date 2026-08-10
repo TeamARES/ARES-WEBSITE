@@ -57,8 +57,8 @@ function LenisSetup() {
     };
 
     const observer = new IntersectionObserver(observerCallback, {
-      rootMargin: '0px 0px -8% 0px',
-      threshold: 0.08,
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0,
     });
 
     // Request animation frame ensures DOM is fully painted before we query and hide
