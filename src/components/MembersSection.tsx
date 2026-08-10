@@ -64,7 +64,7 @@ const RoleCard = ({ role, members }: { role: string, members: string[] }) => {
     <div className="wireframe-card role-card-container" style={{ display: 'flex', flexDirection: 'column', flex: members.length, flexBasis: `${members.length * 280}px`, minWidth: '260px' }}>
       <div className="wireframe-tag" style={{ marginBottom: '24px' }}>[ {role.toUpperCase()} ]</div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '20px', flex: 1 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '12px', flex: 1 }}>
         {members.map((member, i) => {
           const photoData = memberImages[member];
           return (
