@@ -1127,11 +1127,15 @@ body {
     font-size: 11px;
   }
 
-  /* Grids → single column */
-  .grid-cols-3,
+  /* Grids */
   .grid-cols-4,
   .grid-cols-2 {
     grid-template-columns: 1fr;
+  }
+
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   /* Wireframe cards */
