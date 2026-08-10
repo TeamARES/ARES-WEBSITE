@@ -171,6 +171,10 @@ body {
   transition: all 0.3s ease;
 }
 
+.navbar.navbar--hidden {
+  transform: translate(-50%, -120px);
+}
+
 .nav-left {
   display: flex;
   align-items: center;

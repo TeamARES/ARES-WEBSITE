@@ -20,9 +20,26 @@ export const Navbar: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactDropdownOpen, setContactDropdownOpen] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setIsNavbarVisible(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        setIsNavbarVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -88,7 +105,7 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${!isNavbarVisible ? 'navbar--hidden' : ''}`}>
       <div className="nav-left">
         <Link to="/" className="nav-brand">
           <img src="/LOGO.png" alt="ARES Robotics" className="nav-logo-img" />
