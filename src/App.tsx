@@ -1,17 +1,25 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { animate } from 'animejs';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { DepartmentsSection } from './components/DepartmentsSection';
-import { MembersSection } from './components/MembersSection';
-import { ProjectsSection } from './components/ProjectsSection';
-import { RecruitmentSection } from './components/RecruitmentSection';
-import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
-import { CompetitionsSection } from './components/CompetitionsSection';
+import { Home } from './pages/Home';
+import { Team } from './pages/Team';
 
-function App() {
+// Helper to scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+// Lenis initialization component
+function LenisSetup() {
+  const { pathname } = useLocation();
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 2.2,
@@ -28,6 +36,9 @@ function App() {
       rafId = requestAnimationFrame(raf);
     };
     rafId = requestAnimationFrame(raf);
+
+    // Reset lenis scroll when route changes
+    lenis.scrollTo(0, { immediate: true });
 
     const observerCallback: IntersectionObserverCallback = (entries, obs) => {
       entries.forEach((entry, index) => {
@@ -63,24 +74,25 @@ function App() {
       clearTimeout(revealTimer);
       observer.disconnect();
     };
-  }, []);
+  }, [pathname]);
 
+  return null;
+}
+
+function App() {
   return (
-    <div className="app-container tech-grid-bg">
-      <Navbar />
-
-      <main>
-        <HeroSection />
-        <DepartmentsSection />
-        <MembersSection />
-        <ProjectsSection />
-        <CompetitionsSection />
-        <RecruitmentSection />
-        <FaqSection />
-      </main>
-
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <ScrollToTop />
+      <LenisSetup />
+      <div className="app-container tech-grid-bg">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/team" element={<Team />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

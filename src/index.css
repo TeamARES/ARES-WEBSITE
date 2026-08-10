@@ -1167,8 +1167,9 @@ body {
     overflow: visible;
   }
 
-  .h-timeline-track-container {
-    display: none; /* Hide horizontal track on mobile */
+  .h-timeline-track-container,
+  .sumo-bot-canvas {
+    display: none !important; /* Hide horizontal track and 3D bot on mobile */
   }
 
   /* Mobile vertical timeline replacement */

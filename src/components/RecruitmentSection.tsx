@@ -48,6 +48,7 @@ export const RecruitmentSection: React.FC = () => {
 
         {/* Full-page 3D canvas overlay — transparent, no clipping */}
         <Canvas
+          className="sumo-bot-canvas"
           camera={{ position: [0, 0.5, 5], fov: 50 }}
           gl={{ alpha: true, antialias: true }}
           onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Sun, Moon, Menu, X, ChevronDown } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const WhatsAppIcon = ({ size = 28, className = "" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -21,6 +22,7 @@ export const Navbar: React.FC = () => {
   const [contactDropdownOpen, setContactDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -62,29 +64,50 @@ export const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { label: 'Departments', href: '#departments' },
-    { label: 'Members', href: '#members' },
-    { label: 'Projects & Events', href: '#projects' },
-    { label: 'Competitions', href: '#competitions' },
-    { label: 'Recruitment', href: '#recruitment' },
-    { label: 'FAQs', href: '#faq' },
+    { label: 'Departments', href: '/#departments' },
+    { label: 'Members', href: '/team' },
+    { label: 'Projects & Events', href: '/#projects' },
+    { label: 'Competitions', href: '/#competitions' },
+    { label: 'Recruitment', href: '/#recruitment' },
+    { label: 'FAQs', href: '/#faq' },
   ];
+
+  // Helper to handle smooth scrolling if on the same page
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#') && location.pathname === '/') {
+      e.preventDefault();
+      const id = href.replace('/#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      setMobileMenuOpen(false);
+    } else {
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <nav className="navbar">
       <div className="nav-left">
-        <a href="#home" className="nav-brand">
+        <Link to="/" className="nav-brand">
           <img src="/LOGO.png" alt="ARES Robotics" className="nav-logo-img" />
           <span className="nav-brand-text">ARES Robotics</span>
-        </a>
+        </Link>
       </div>
 
       <ul className="nav-links">
         {navItems.map((item) => (
           <li key={item.label}>
-            <a href={item.href} className="nav-link">
-              {item.label}
-            </a>
+            {item.href.startsWith('/#') ? (
+              <a href={item.href} onClick={(e) => handleNavClick(e, item.href)} className="nav-link">
+                {item.label}
+              </a>
+            ) : (
+              <Link to={item.href} className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+                {item.label}
+              </Link>
+            )}
           </li>
         ))}
       </ul>
@@ -152,14 +175,25 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="mobile-dropdown">
           {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="mobile-link"
-            >
-              {item.label}
-            </a>
+            item.href.startsWith('/#') ? (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="mobile-link"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.label}
+                to={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="mobile-link"
+              >
+                {item.label}
+              </Link>
+            )
           ))}
           <div 
             className={`contact-dropdown-wrapper ${contactDropdownOpen ? 'open' : ''}`}
