@@ -1136,12 +1136,30 @@ body {
 
   /* Wireframe cards */
   .wireframe-card {
-    padding: 20px;
+    padding: 16px !important;
     min-height: auto;
   }
-  
-  .role-card-container {
-    padding: 16px !important;
+
+  /* Force smaller text inside cards on mobile to bypass inline styles */
+  .wireframe-card h3,
+  .wireframe-card .event-title,
+  .wireframe-card div[style*="font-size: 20px"],
+  .wireframe-card div[style*="font-size: 24px"],
+  .wireframe-card div[style*="font-size: 26px"] {
+    font-size: 18px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .wireframe-card p,
+  .wireframe-card div[style*="font-size: 14px"] {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+
+  .wireframe-tag {
+    font-size: 9px !important;
+    padding: 3px 6px !important;
+    margin-bottom: 12px !important;
   }
 
   .wireframe-media {
