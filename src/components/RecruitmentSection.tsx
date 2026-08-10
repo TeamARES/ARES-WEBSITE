@@ -36,7 +36,7 @@ export const RecruitmentSection: React.FC = () => {
   const botPercent = progress * 100;
 
   return (
-    <div ref={wrapperRef} className="timeline-scroll-wrapper">
+    <div id="recruitment" ref={wrapperRef} className="timeline-scroll-wrapper">
       <div className="timeline-sticky">
         <div className="section-header">
           <div className="section-title">
