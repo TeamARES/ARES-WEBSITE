@@ -1025,6 +1025,10 @@ body {
   color: #E1306C;
 }
 
+.role-card-container {
+  padding: 24px;
+}
+
 /* ══════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
    ══════════════════════════════════════════ */
@@ -1134,6 +1138,10 @@ body {
   .wireframe-card {
     padding: 20px;
     min-height: auto;
+  }
+  
+  .role-card-container {
+    padding: 16px !important;
   }
 
   .wireframe-media {

@@ -61,14 +61,14 @@ const departmentRows = [
 
 const RoleCard = ({ role, members }: { role: string, members: string[] }) => {
   return (
-    <div className="wireframe-card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', flex: members.length, flexBasis: `${members.length * 280}px`, minWidth: '300px' }}>
+    <div className="wireframe-card role-card-container" style={{ display: 'flex', flexDirection: 'column', flex: members.length, flexBasis: `${members.length * 280}px`, minWidth: '260px' }}>
       <div className="wireframe-tag" style={{ marginBottom: '24px' }}>[ {role.toUpperCase()} ]</div>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', flex: 1 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '20px', flex: 1 }}>
         {members.map((member, i) => {
           const photoData = memberImages[member];
           return (
-            <div key={i} style={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: '180px' }}>
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
               {photoData ? (
                 <div style={{ width: '100%', aspectRatio: '3 / 4', marginBottom: '16px', borderRadius: '8px', border: '1px solid var(--border-color)', backgroundColor: 'var(--card-bg)', overflow: 'hidden' }}>
                   <img
