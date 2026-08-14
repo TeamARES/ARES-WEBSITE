@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Sun, Moon, Menu, X, ChevronDown } from 'lucide-react';
+import { Sun, Moon, Menu, X, ChevronDown, ArrowUpRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const WhatsAppIcon = ({ size = 28, className = "" }) => (
@@ -25,6 +25,8 @@ export const Navbar: React.FC = () => {
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
   const location = useLocation();
+
+  const RECRUITMENT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfEyxb0q6qqYU2g7sbT7lanZ9ZSL3lmWM4sxK-B_KOCrXX80A/viewform";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,7 +87,7 @@ export const Navbar: React.FC = () => {
     { label: 'Members', href: '/team' },
     { label: 'Projects & Events', href: '/#projects' },
     { label: 'Competitions', href: '/#competitions' },
-    { label: 'Recruitment', href: '/#recruitment' },
+    { label: 'Recruitment', href: RECRUITMENT_FORM_URL, isExternal: true },
     { label: 'FAQs', href: '/#faq' },
   ];
 
@@ -116,7 +118,17 @@ export const Navbar: React.FC = () => {
       <ul className="nav-links">
         {navItems.map((item) => (
           <li key={item.label}>
-            {item.href.startsWith('/#') ? (
+            {item.isExternal ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link nav-link--highlight"
+              >
+                <span>{item.label}</span>
+                <span className="nav-live-badge">LIVE</span>
+              </a>
+            ) : item.href.startsWith('/#') ? (
               <a href={item.href} onClick={(e) => handleNavClick(e, item.href)} className="nav-link">
                 {item.label}
               </a>
@@ -130,6 +142,19 @@ export const Navbar: React.FC = () => {
       </ul>
 
       <div className="nav-right">
+        {/* Highlighted Recruitment CTA Button */}
+        <a
+          href={RECRUITMENT_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="recruitment-highlight-btn"
+          title="Apply for ARES Recruitment 2026"
+        >
+          <span className="live-pulse-dot" />
+          <span>Apply Now</span>
+          <ArrowUpRight size={15} className="btn-icon" />
+        </a>
+
         <button
           onClick={toggleTheme}
           className="btn-theme-toggle"
@@ -191,8 +216,32 @@ export const Navbar: React.FC = () => {
 
       {mobileMenuOpen && (
         <div className="mobile-dropdown">
+          <a
+            href={RECRUITMENT_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="recruitment-highlight-btn mobile-recruitment-btn"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <span className="live-pulse-dot" />
+            <span>Apply Now — Recruitment Form</span>
+            <ArrowUpRight size={16} className="btn-icon" />
+          </a>
+
           {navItems.map((item) => (
-            item.href.startsWith('/#') ? (
+            item.isExternal ? (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mobile-link mobile-link--highlight"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span>{item.label}</span>
+                <span className="nav-live-badge">LIVE</span>
+              </a>
+            ) : item.href.startsWith('/#') ? (
               <a
                 key={item.label}
                 href={item.href}
