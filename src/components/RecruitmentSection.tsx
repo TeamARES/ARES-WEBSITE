@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
+import { ArrowUpRight } from 'lucide-react';
 import { SumoBotModel } from './SumoBotModel';
 
 const STAGES = [
@@ -15,6 +16,8 @@ export const RecruitmentSection: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0); // 0 to 1 across full scroll
   const [activeStage, setActiveStage] = useState(-1);
+
+  const RECRUITMENT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfEyxb0q6qqYU2g7sbT7lanZ9ZSL3lmWM4sxK-B_KOCrXX80A/viewform";
 
   useEffect(() => {
     const onScroll = () => {
@@ -105,6 +108,21 @@ export const RecruitmentSection: React.FC = () => {
               <div className="timeline-date">{stage.label}</div>
               <div className="h-timeline-title">{stage.title}</div>
               <div className="h-timeline-desc">{stage.desc}</div>
+              {stage.num === 2 && (
+                <div style={{ marginTop: '16px' }}>
+                  <a
+                    href={RECRUITMENT_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="recruitment-highlight-btn"
+                    style={{ pointerEvents: 'auto' }}
+                  >
+                    <span className="live-pulse-dot" />
+                    <span>Fill Recruitment Form</span>
+                    <ArrowUpRight size={16} className="btn-icon" />
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </div>
