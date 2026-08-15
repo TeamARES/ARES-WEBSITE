@@ -483,13 +483,25 @@ body {
   display: none;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
   .nav-links {
-    display: none;
+    display: none !important;
+  }
+
+  .nav-right .contact-dropdown-wrapper {
+    display: none !important;
   }
 
   .mobile-toggle {
-    display: block;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-main);
   }
 
   .navbar {
@@ -502,27 +514,81 @@ body {
     top: 68px;
     left: 0;
     width: 100%;
-    background: var(--bg-color);
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    box-shadow: 0 12px 35px var(--shadow-color);
+    gap: 8px;
+    box-shadow: 0 16px 40px var(--shadow-color);
+    z-index: 1000;
+  }
+
+  .mobile-nav-section-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 6px 0 2px 8px;
+  }
+
+  .mobile-nav-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 6px 0;
   }
 
   .mobile-link {
+    font-family: var(--font-sans);
     font-size: 15px;
     font-weight: 600;
     color: var(--text-main);
     text-decoration: none;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
   }
 
-  .mobile-link:hover {
-    background: var(--text-dim);
+  .mobile-link:hover,
+  .mobile-link:active {
+    background: var(--border-color);
+    transform: translateX(4px);
+  }
+
+  .mobile-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    transition: all 0.2s ease;
+  }
+
+  .mobile-contact-item.btn-whatsapp:hover {
+    background: rgba(30, 157, 85, 0.1);
+    color: #1FA95B;
+    border-color: rgba(30, 157, 85, 0.3);
+  }
+
+  .mobile-contact-item.btn-instagram:hover {
+    background: rgba(225, 48, 108, 0.1);
+    color: #E1306C;
+    border-color: rgba(225, 48, 108, 0.3);
   }
 }
 

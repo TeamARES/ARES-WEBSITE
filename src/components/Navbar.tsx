@@ -215,7 +215,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       {mobileMenuOpen && (
-        <div className="mobile-dropdown">
+        <div className="mobile-dropdown animate-pop-in">
           <a
             href={RECRUITMENT_FORM_URL}
             target="_blank"
@@ -227,6 +227,8 @@ export const Navbar: React.FC = () => {
             <span>Apply Now — Recruitment Form</span>
             <ArrowUpRight size={16} className="btn-icon" />
           </a>
+
+          <div className="mobile-nav-section-title">Navigation</div>
 
           {navItems.map((item) => (
             item.isExternal ? (
@@ -261,53 +263,31 @@ export const Navbar: React.FC = () => {
               </Link>
             )
           ))}
-          <div 
-            className={`contact-dropdown-wrapper ${contactDropdownOpen ? 'open' : ''}`}
-            ref={mobileDropdownRef}
-            style={{ alignSelf: 'center', marginTop: '10px' }}
+
+          <div className="mobile-nav-divider" />
+          <div className="mobile-nav-section-title">Connect With Us</div>
+
+          <a 
+            href="https://chat.whatsapp.com/DyfwYcMpYgiIVUPpO0VAfD?s=cl&p=a&ilr=0&amv=2" 
+            className="mobile-contact-item btn-whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
           >
-            <button 
-              className="btn-nav-cta"
-              onClick={(e) => {
-                e.stopPropagation();
-                setContactDropdownOpen(!contactDropdownOpen);
-              }}
-              aria-expanded={contactDropdownOpen}
-              aria-haspopup="true"
-            >
-              <span>Contact</span>
-              <ChevronDown size={15} />
-            </button>
-            
-            <div className="contact-dropdown-menu" style={{ left: '50%', right: 'auto', transform: 'translateX(-50%) translateY(-10px)' }}>
-              <a 
-                href="https://chat.whatsapp.com/DyfwYcMpYgiIVUPpO0VAfD?s=cl&p=a&ilr=0&amv=2" 
-                className="dropdown-item btn-whatsapp"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  setContactDropdownOpen(false);
-                  setMobileMenuOpen(false);
-                }}
-              >
-                <WhatsAppIcon size={18} className="icon" />
-                <span>Join Freshers' 2030 Group</span>
-              </a>
-              <a 
-                href="https://www.instagram.com/aresrobotics.nsut/" 
-                className="dropdown-item btn-instagram"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  setContactDropdownOpen(false);
-                  setMobileMenuOpen(false);
-                }}
-              >
-                <InstagramIcon size={18} className="icon" />
-                <span>ARES Instagram</span>
-              </a>
-            </div>
-          </div>
+            <WhatsAppIcon size={20} className="icon" />
+            <span>Join Freshers' 2030 Group</span>
+          </a>
+
+          <a 
+            href="https://www.instagram.com/aresrobotics.nsut/" 
+            className="mobile-contact-item btn-instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <InstagramIcon size={20} className="icon" />
+            <span>ARES Instagram</span>
+          </a>
         </div>
       )}
     </nav>
