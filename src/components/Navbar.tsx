@@ -83,10 +83,11 @@ export const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { label: 'Notable Alumni', href: '/#alumni' },
+    { label: 'About', href: '/#about', mobileOnly: true },
     { label: 'Departments', href: '/#departments' },
     { label: 'Members', href: '/team' },
     { label: 'Projects & Events', href: '/#projects' },
+    { label: 'Notable Alumni', href: '/#alumni' },
     { label: 'Competitions', href: '/#competitions' },
     { label: 'Recruitment', href: RECRUITMENT_FORM_URL, isExternal: true },
     { label: 'FAQs', href: '/#faq' },
@@ -117,7 +118,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       <ul className="nav-links">
-        {navItems.map((item) => (
+        {navItems.filter(item => !item.mobileOnly).map((item) => (
           <li key={item.label}>
             {item.isExternal ? (
               <a

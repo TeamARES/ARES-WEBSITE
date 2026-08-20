@@ -1395,10 +1395,10 @@ body {
   bottom: 16px;
   left: 16px;
   right: 16px;
-  background: rgba(13, 14, 18, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 8px 14px;
   display: flex;
@@ -1409,6 +1409,22 @@ body {
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--text-main);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="light"] .alumni-brand-overlay {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(20, 20, 20, 0.16) !important;
+  color: #141414 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .alumni-brand-overlay {
+  background: rgba(13, 14, 18, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #f0f2f5 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .alumni-live-dot {
@@ -1508,6 +1524,332 @@ body {
   display: flex;
   align-items: center;
 }
+
+/* ══════════════════════════════════════════
+   ABOUT ARES SECTION
+   ══════════════════════════════════════════ */
+
+.about-section-header .section-title {
+  font-size: clamp(34px, 5.5vw, 54px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.about-title-text {
+  font-weight: 900;
+  color: var(--text-main);
+  position: relative;
+  display: inline-block;
+}
+
+.about-ares-container {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+}
+
+.about-location-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 2vw, 11px);
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.about-main-heading {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.8vw, 48px);
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+}
+
+.about-main-heading .gradient-text {
+  background: linear-gradient(135deg, var(--brand-blue) 0%, #00d2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.about-core-text {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 2vw, 16px);
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 28px;
+  border-left: 2px solid var(--brand-blue);
+  padding-left: 18px;
+}
+
+.about-philosophy-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.about-philosophy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand-blue);
+  background: rgba(0, 102, 255, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.about-philosophy-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand-blue);
+}
+
+.about-chip-icon {
+  display: flex;
+  align-items: center;
+}
+
+.about-philosophy-arrow {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.about-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.about-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-stat-val {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.about-stat-lbl {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.about-stat-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border-color);
+}
+
+/* Visual Column — Photo Showcase */
+.about-ares-visual-col {
+  width: 100%;
+}
+
+.about-photo-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.about-photo-coord {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+.about-photo-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-photo-container:hover {
+  border-color: var(--brand-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -12px rgba(0, 102, 255, 0.15);
+}
+
+.about-group-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-photo-container:hover .about-group-img {
+  transform: scale(1.03);
+}
+
+.about-photo-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+[data-theme="light"] .about-photo-gradient-overlay {
+  background: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(228, 228, 228, 0.4) 100%);
+}
+
+[data-theme="dark"] .about-photo-gradient-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(13, 14, 18, 0.85) 100%);
+}
+
+.about-floating-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="light"] .about-floating-badge {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(20, 20, 20, 0.16) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .about-floating-badge {
+  background: rgba(13, 14, 18, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.about-badge-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-badge-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="light"] .about-badge-title {
+  color: #141414 !important;
+}
+
+[data-theme="dark"] .about-badge-title {
+  color: #f0f2f5 !important;
+}
+
+.about-badge-sub {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  padding-left: 22px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="light"] .about-badge-sub {
+  color: rgba(20, 20, 20, 0.7) !important;
+}
+
+[data-theme="dark"] .about-badge-sub {
+  color: rgba(240, 242, 245, 0.7) !important;
+}
+
+.about-tech-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--brand-blue);
+  pointer-events: none;
+}
+
+.about-tech-corner.top-left {
+  top: -4px;
+  left: -4px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.about-tech-corner.bottom-right {
+  bottom: -4px;
+  right: -4px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Tablet & Mobile Responsive Adjustments */
+@media (max-width: 960px) {
+  .about-ares-container {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .about-photo-container {
+    aspect-ratio: 16 / 10;
+  }
+
+  .about-philosophy-bar {
+    gap: 8px;
+  }
+
+  .about-philosophy-arrow {
+    display: none;
+  }
+
+  .about-stats-row {
+    justify-content: space-between;
+  }
+}
+
 
 .alumni-bio {
   font-family: var(--font-sans);
