@@ -83,6 +83,7 @@ export const Navbar: React.FC = () => {
   };
 
   const navItems = [
+    { label: 'Notable Alumni', href: '/#alumni' },
     { label: 'Departments', href: '/#departments' },
     { label: 'Members', href: '/team' },
     { label: 'Projects & Events', href: '/#projects' },

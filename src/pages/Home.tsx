@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeroSection } from '../components/HeroSection';
+import { NotableAlumniSection } from '../components/NotableAlumniSection';
 import { DepartmentsSection } from '../components/DepartmentsSection';
 import { ProjectsSection } from '../components/ProjectsSection';
 import { RecruitmentSection } from '../components/RecruitmentSection';
@@ -10,6 +11,7 @@ export const Home: React.FC = () => {
   return (
     <main>
       <HeroSection />
+      <NotableAlumniSection />
       <DepartmentsSection />
       <ProjectsSection />
       <CompetitionsSection />
@@ -18,3 +20,4 @@ export const Home: React.FC = () => {
     </main>
   );
 };
+

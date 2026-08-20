@@ -1214,6 +1214,343 @@ body {
 }
 
 /* ══════════════════════════════════════════
+   MEMBERS SECTION EQUAL CARDS GRID
+   ══════════════════════════════════════════ */
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 20px 16px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  border-radius: 12px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.member-card:hover {
+  border-color: var(--brand-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px -4px rgba(0, 102, 255, 0.15);
+}
+
+.member-role-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand-blue);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding: 5px 10px;
+  background: rgba(0, 102, 255, 0.08);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.member-photo-container {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.member-card:hover .member-photo {
+  transform: scale(1.05);
+}
+
+.member-name {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .member-card {
+    padding: 16px 12px;
+  }
+  
+  .member-role-tag {
+    font-size: 10px;
+    padding: 4px 6px;
+    margin-bottom: 12px;
+  }
+  
+  .member-photo-container {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .members-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   NOTABLE ALUMNI SECTION
+   ══════════════════════════════════════════ */
+
+.alumni-feature-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.alumni-feature-card:hover {
+  border-color: var(--brand-blue);
+  box-shadow: 0 16px 36px -8px rgba(0, 102, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+.alumni-visual-frame {
+  position: relative;
+  width: 100%;
+}
+
+.alumni-watermark-num {
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  font-family: var(--font-mono);
+  font-size: clamp(80px, 12vw, 140px);
+  font-weight: 900;
+  color: var(--border-color);
+  opacity: 0.25;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.alumni-portrait-box {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.alumni-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.alumni-feature-card:hover .alumni-portrait-img {
+  transform: scale(1.04);
+}
+
+.alumni-brand-overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(13, 14, 18, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-main);
+}
+
+.alumni-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand-blue);
+  box-shadow: 0 0 8px var(--brand-blue);
+}
+
+.alumni-content-frame {
+  position: relative;
+  z-index: 1;
+}
+
+.alumni-name {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 6px 0;
+}
+
+.alumni-designation {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 2.5vw, 17px);
+  font-weight: 700;
+  color: var(--brand-blue);
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.alumni-badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.alumni-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.alumni-badge:hover {
+  border-color: var(--brand-blue);
+  color: var(--text-main);
+  transform: translateY(-1px);
+}
+
+.alumni-badge--primary {
+  background: rgba(0, 102, 255, 0.08);
+  border-color: rgba(0, 102, 255, 0.25);
+  color: var(--brand-blue);
+  font-weight: 700;
+}
+
+.alumni-badge--green {
+  background: rgba(31, 169, 91, 0.12);
+  border-color: rgba(31, 169, 91, 0.35);
+  color: #1FA95B;
+  font-weight: 700;
+}
+
+.alumni-badge--green:hover {
+  border-color: #1FA95B;
+  box-shadow: 0 0 12px rgba(31, 169, 91, 0.25);
+  color: #1FA95B;
+}
+
+.alumni-badge--red {
+  background: rgba(255, 59, 59, 0.12);
+  border-color: rgba(255, 59, 59, 0.35);
+  color: #FF3B3B;
+  font-weight: 700;
+}
+
+.alumni-badge--red:hover {
+  border-color: #FF3B3B;
+  box-shadow: 0 0 12px rgba(255, 59, 59, 0.25);
+  color: #FF3B3B;
+}
+
+.alumni-badge-icon {
+  display: flex;
+  align-items: center;
+}
+
+.alumni-bio {
+  font-family: var(--font-sans);
+  font-size: clamp(13px, 2vw, 15px);
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+  border-left: 2px solid var(--border-color);
+  padding-left: 16px;
+}
+
+/* Tablet & Mobile Breakpoints */
+@media (max-width: 900px) {
+  .alumni-feature-card {
+    display: flex !important;
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .alumni-visual-frame {
+    order: 1 !important;
+  }
+
+  .alumni-content-frame {
+    order: 2 !important;
+  }
+
+  .alumni-watermark-num {
+    top: -10px;
+    left: 0;
+    font-size: 80px;
+  }
+
+  .alumni-portrait-box {
+    aspect-ratio: 4 / 4;
+    max-height: 380px;
+  }
+}
+
+
+
+/* ══════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
    ══════════════════════════════════════════ */
 

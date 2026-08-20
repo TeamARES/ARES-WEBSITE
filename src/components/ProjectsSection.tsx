@@ -96,7 +96,6 @@ export const ProjectsSection: React.FC = () => {
     <section id="projects" className="content-section" style={{ paddingBottom: '60px' }} onClick={handleSectionClick}>
       <div className="section-header">
         <div className="section-title">
-          <span className="section-num">03</span>
           <span>PROJECTS &amp; EVENTS</span>
         </div>
         <div className="section-subtitle">Autonomous Systems &amp; Community Impact</div>

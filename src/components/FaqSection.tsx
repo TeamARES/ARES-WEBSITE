@@ -33,7 +33,6 @@ export const FaqSection: React.FC = () => {
     <section id="faq" className="content-section">
       <div className="section-header">
         <div className="section-title">
-          <span className="section-num">06</span>
           <span>FREQUENTLY ASKED QUESTIONS</span>
         </div>
         <div className="section-subtitle">General Inquiries &amp; Information</div>
