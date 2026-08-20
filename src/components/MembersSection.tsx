@@ -27,74 +27,71 @@ const memberImages: Record<string, { src: string, position?: string, fit?: any, 
   'Riya Shukla': { src: '/team/Riyashukla.png', fit: 'cover', position: 'center 25%', scale: 1.15 }
 };
 
-const leadershipRows = [
-  [
-    { role: 'President', members: ['Tanishtha'] },
-    { role: 'Vice Presidents', members: ['Ravi', 'Namai'] },
-    { role: 'Director', members: ['Samiul'] },
-  ],
-  [
-    { role: 'General Secretaries', members: ['Somnath', 'Sanvi'] },
-    { role: 'Mentors', members: ['Ujjawal', 'Yash'] },
-  ]
+interface MemberItem {
+  name: string;
+  role: string;
+}
+
+const leadershipMembers: MemberItem[] = [
+  { name: 'Tanishtha', role: 'President' },
+  { name: 'Ravi', role: 'Vice President' },
+  { name: 'Namai', role: 'Vice President' },
+  { name: 'Samiul', role: 'Director' },
+  { name: 'Somnath', role: 'General Secretary' },
+  { name: 'Sanvi', role: 'General Secretary' },
+  { name: 'Ujjawal', role: 'Mentor' },
+  { name: 'Yash', role: 'Mentor' },
 ];
 
-const departmentRows = [
-  [
-    { role: 'Project Leads', members: ['Ishit Papnai', 'Muskan Arora'] },
-    { role: 'Software Lead', members: ['Shriyansh Goyal'] },
-    { role: 'Mechanical Lead', members: ['Deep Maurya'] },
-  ],
-  [
-    { role: 'Electronics Leads', members: ['Ruhansh Bansal', 'Abhinit Verma'] },
-    { role: 'Business Lead (Outreach)', members: ['Raghav Kathuria'] },
-    { role: 'Business Lead (Operations/Admin)', members: ['Abhibhav Rai'] },
-  ],
-  [
-    { role: 'Science & R&D Leads', members: ['Maninderjeet Singh', 'Kunsh Bhatia', 'Anant Sangal'] },
-  ],
-  [
-    { role: 'Design Leads', members: ['Riya Shukla', 'Ankita Mungi'] },
-    { role: 'Senior Core', members: ['Shayana Madan', 'Kavyansh Malhotra'] },
-  ]
+const departmentMembers: MemberItem[] = [
+  { name: 'Ishit Papnai', role: 'Project Lead' },
+  { name: 'Muskan Arora', role: 'Project Lead' },
+  { name: 'Shriyansh Goyal', role: 'Software Lead' },
+  { name: 'Deep Maurya', role: 'Mechanical Lead' },
+  { name: 'Ruhansh Bansal', role: 'Electronics Lead' },
+  { name: 'Abhinit Verma', role: 'Electronics Lead' },
+  { name: 'Raghav Kathuria', role: 'Business Lead (Outreach)' },
+  { name: 'Abhibhav Rai', role: 'Business Lead (Ops/Admin)' },
+  { name: 'Maninderjeet Singh', role: 'Science & R&D Lead' },
+  { name: 'Kunsh Bhatia', role: 'Science & R&D Lead' },
+  { name: 'Anant Sangal', role: 'Science & R&D Lead' },
+  { name: 'Riya Shukla', role: 'Design Lead' },
+  { name: 'Ankita Mungi', role: 'Design Lead' },
+  { name: 'Shayana Madan', role: 'Senior Core' },
+  { name: 'Kavyansh Malhotra', role: 'Senior Core' },
 ];
 
-const RoleCard = ({ role, members }: { role: string, members: string[] }) => {
+const SingleMemberCard = ({ name, role }: MemberItem) => {
+  const photoData = memberImages[name];
+
   return (
-    <div className="wireframe-card role-card-container" style={{ display: 'flex', flexDirection: 'column', flex: members.length, flexBasis: `${members.length * 280}px`, minWidth: '260px' }}>
-      <div className="wireframe-tag" style={{ marginBottom: '24px' }}>[ {role.toUpperCase()} ]</div>
+    <div className="member-card">
+      <div className="member-role-tag" title={role}>
+        [ {role.toUpperCase()} ]
+      </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '12px', flex: 1 }}>
-        {members.map((member, i) => {
-          const photoData = memberImages[member];
-          return (
-            <div key={i} style={{ display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '200px', margin: '0 auto' }}>
-              {photoData ? (
-                <div style={{ width: '100%', aspectRatio: '3 / 4', marginBottom: '16px', borderRadius: '8px', border: '1px solid var(--border-color)', backgroundColor: 'var(--card-bg)', overflow: 'hidden' }}>
-                  <img
-                    src={photoData.src}
-                    alt={member}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: photoData.fit || 'cover',
-                      objectPosition: photoData.position || 'center',
-                      transform: photoData.scale ? `scale(${photoData.scale})` : 'none'
-                    }}
-                  />
-                </div>
-              ) : (
-                <div className="wireframe-media" style={{ aspectRatio: '3 / 4', marginBottom: '16px', flexDirection: 'column', gap: '10px', width: '100%', borderRadius: '8px' }}>
-                  <User size={32} style={{ color: 'var(--text-dim)' }} />
-                  <span style={{ fontSize: '11px', letterSpacing: '1px' }}>[ PHOTO ]</span>
-                </div>
-              )}
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(13px, 3.5vw, 16px)', fontWeight: '800', color: 'var(--text-main)', letterSpacing: '-0.02em', lineHeight: '1.2' }}>
-                {member}
-              </div>
-            </div>
-          );
-        })}
+      <div className="member-photo-container">
+        {photoData ? (
+          <img
+            src={photoData.src}
+            alt={name}
+            className="member-photo"
+            style={{
+              objectFit: photoData.fit || 'cover',
+              objectPosition: photoData.position || 'center',
+              transform: photoData.scale ? `scale(${photoData.scale})` : undefined
+            }}
+          />
+        ) : (
+          <div className="wireframe-media" style={{ width: '100%', height: '100%', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <User size={32} style={{ color: 'var(--text-dim)' }} />
+            <span style={{ fontSize: '10px', letterSpacing: '1px' }}>[ PHOTO ]</span>
+          </div>
+        )}
+      </div>
+
+      <div className="member-name">
+        {name}
       </div>
     </div>
   );
@@ -105,7 +102,6 @@ export const MembersSection: React.FC = () => {
     <section id="members" className="content-section">
       <div className="section-header" style={{ marginBottom: '48px' }}>
         <div className="section-title">
-          <span className="section-num">02</span>
           <span>TEAM MEMBERS</span>
         </div>
         <div className="section-subtitle">Engineers, Researchers &amp; Faculty Advisors</div>
@@ -118,13 +114,9 @@ export const MembersSection: React.FC = () => {
           <span style={{ flex: 1, height: '1px', background: 'var(--border-color)' }}></span>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {leadershipRows.map((row, rowIndex) => (
-            <div key={rowIndex} style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
-              {row.map((roleInfo, index) => (
-                <RoleCard key={index} role={roleInfo.role} members={roleInfo.members} />
-              ))}
-            </div>
+        <div className="members-grid">
+          {leadershipMembers.map((member, index) => (
+            <SingleMemberCard key={index} name={member.name} role={member.role} />
           ))}
         </div>
       </div>
@@ -136,16 +128,13 @@ export const MembersSection: React.FC = () => {
           <span style={{ flex: 1, height: '1px', background: 'var(--border-color)' }}></span>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {departmentRows.map((row, rowIndex) => (
-            <div key={rowIndex} style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
-              {row.map((roleInfo, index) => (
-                <RoleCard key={index} role={roleInfo.role} members={roleInfo.members} />
-              ))}
-            </div>
+        <div className="members-grid">
+          {departmentMembers.map((member, index) => (
+            <SingleMemberCard key={index} name={member.name} role={member.role} />
           ))}
         </div>
       </div>
     </section>
   );
 };
+

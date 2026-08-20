@@ -43,7 +43,6 @@ export const RecruitmentSection: React.FC = () => {
       <div className="timeline-sticky">
         <div className="section-header">
           <div className="section-title">
-            <span className="section-num">05</span>
             <span>RECRUITMENT TIMELINE</span>
           </div>
           <div className="section-subtitle">Annual Onboarding &amp; Selection Stages</div>

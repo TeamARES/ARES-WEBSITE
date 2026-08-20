@@ -92,7 +92,6 @@ export const DepartmentsSection: React.FC = () => {
     <section id="departments" className="content-section">
       <div className="section-header">
         <div className="section-title">
-          <span className="section-num">01</span>
           <span>DEPARTMENTS</span>
         </div>
         <div className="section-subtitle">Core Technical &amp; Operational Divisions</div>

@@ -38,7 +38,6 @@ export const CompetitionsSection: React.FC = () => {
     <section id="competitions" className="content-section" style={{ paddingTop: '60px' }}>
       <div className="section-header">
         <div className="section-title">
-          <span className="section-num">04</span>
           <span>COMPETITIONS</span>
         </div>
         <div className="section-subtitle">Global &amp; National Challenges</div>
