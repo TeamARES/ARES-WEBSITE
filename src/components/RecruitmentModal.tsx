@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowUpRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
 
-const RECRUITMENT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfEyxb0q6qqYU2g7sbT7lanZ9ZSL3lmWM4sxK-B_KOCrXX80A/viewform";
+const RECRUITMENT_RESULTS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgGalZjXIiN5G0cfgOVr59lBOrdZhhL7QDKFeFnL1RqoNMLTnwHMD8SOlUZ8IAxm8krj87mX68Wr01/pubhtml";
 
 export const RecruitmentModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -57,9 +57,9 @@ export const RecruitmentModal: React.FC = () => {
         {/* Modal Header */}
         <div className="modal-header">
           <div className="modal-title-group">
-            <span className="live-pulse-dot" />
-            <span id="modal-recruitment-title" className="modal-badge-text">
-              RECRUITMENTS OPEN '26
+            <span className="live-pulse-dot results-dot" />
+            <span id="modal-recruitment-title" className="modal-badge-text" style={{ color: '#34D399' }}>
+              ROUND 1 RESULTS OUT!
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -101,14 +101,14 @@ export const RecruitmentModal: React.FC = () => {
         {/* Modal Footer with Call To Action */}
         <div className="modal-footer">
           <a
-            href={RECRUITMENT_FORM_URL}
+            href={RECRUITMENT_RESULTS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="recruitment-highlight-btn modal-cta-btn"
+            className="recruitment-results-btn modal-cta-btn"
             onClick={handleClose}
           >
             <Sparkles size={16} />
-            <span>Apply Now — Fill Recruitment Form</span>
+            <span>ARES Recruitment Round 1 Results Out! Check out →</span>
             <ArrowUpRight size={18} className="btn-icon" />
           </a>
 

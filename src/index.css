@@ -288,6 +288,42 @@ body {
   color: #ffffff;
 }
 
+/* ── Green Results Button (Round 1 Results Out) ── */
+.recruitment-results-btn {
+  position: relative;
+  height: 38px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(52, 211, 153, 0.5) !important;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.recruitment-results-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(135deg, #047857 0%, #059669 100%) !important;
+  box-shadow: 0 6px 22px rgba(16, 185, 129, 0.6), 0 0 25px rgba(52, 211, 153, 0.65) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  color: #ffffff !important;
+}
+
+.live-pulse-dot.results-dot {
+  background-color: #34d399 !important;
+  box-shadow: 0 0 10px #34d399 !important;
+}
+
 /* Radar Pulse Indicator Dot */
 .live-pulse-dot {
   position: relative;
@@ -589,6 +625,34 @@ body {
     background: rgba(225, 48, 108, 0.1);
     color: #E1306C;
     border-color: rgba(225, 48, 108, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-right .recruitment-results-btn,
+  .nav-right .recruitment-highlight-btn {
+    display: none !important;
+  }
+
+  .timeline-sticky {
+    padding: 40px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    width: 95%;
+    padding: 0 12px;
+  }
+
+  .nav-brand-text {
+    font-size: 14px;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo-img {
+    width: 28px;
+    height: 28px;
   }
 }
 

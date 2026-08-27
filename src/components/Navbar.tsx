@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
   const lastScrollY = useRef(0);
   const location = useLocation();
 
-  const RECRUITMENT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfEyxb0q6qqYU2g7sbT7lanZ9ZSL3lmWM4sxK-B_KOCrXX80A/viewform";
+  const RECRUITMENT_RESULTS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgGalZjXIiN5G0cfgOVr59lBOrdZhhL7QDKFeFnL1RqoNMLTnwHMD8SOlUZ8IAxm8krj87mX68Wr01/pubhtml";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,14 +82,21 @@ export const Navbar: React.FC = () => {
     localStorage.setItem('ares-theme', nextTheme);
   };
 
-  const navItems = [
+  interface NavItem {
+    label: string;
+    href: string;
+    mobileOnly?: boolean;
+    isExternal?: boolean;
+  }
+
+  const navItems: NavItem[] = [
     { label: 'About', href: '/#about', mobileOnly: true },
     { label: 'Departments', href: '/#departments' },
     { label: 'Members', href: '/team' },
     { label: 'Projects & Events', href: '/#projects' },
     { label: 'Notable Alumni', href: '/#alumni' },
     { label: 'Competitions', href: '/#competitions' },
-    { label: 'Recruitment', href: RECRUITMENT_FORM_URL, isExternal: true },
+    { label: 'Recruitment', href: '/#recruitment' },
     { label: 'FAQs', href: '/#faq' },
   ];
 
@@ -126,9 +133,10 @@ export const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav-link nav-link--highlight"
+                style={{ borderColor: 'rgba(52, 211, 153, 0.4)' }}
               >
                 <span>{item.label}</span>
-                <span className="nav-live-badge">LIVE</span>
+                <span className="nav-live-badge" style={{ background: '#059669' }}>OUT</span>
               </a>
             ) : item.href.startsWith('/#') ? (
               <a href={item.href} onClick={(e) => handleNavClick(e, item.href)} className="nav-link">
@@ -144,16 +152,16 @@ export const Navbar: React.FC = () => {
       </ul>
 
       <div className="nav-right">
-        {/* Highlighted Recruitment CTA Button */}
+        {/* Highlighted Green Results CTA Button */}
         <a
-          href={RECRUITMENT_FORM_URL}
+          href={RECRUITMENT_RESULTS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="recruitment-highlight-btn"
-          title="Apply for ARES Recruitment 2026"
+          className="recruitment-results-btn"
+          title="ARES Recruitment Round 1 Results Out!"
         >
-          <span className="live-pulse-dot" />
-          <span>Apply Now</span>
+          <span className="live-pulse-dot results-dot" />
+          <span>Round 1 Results Out</span>
           <ArrowUpRight size={15} className="btn-icon" />
         </a>
 
@@ -219,14 +227,14 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="mobile-dropdown animate-pop-in">
           <a
-            href={RECRUITMENT_FORM_URL}
+            href={RECRUITMENT_RESULTS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="recruitment-highlight-btn mobile-recruitment-btn"
+            className="recruitment-results-btn mobile-recruitment-btn"
             onClick={() => setMobileMenuOpen(false)}
           >
-            <span className="live-pulse-dot" />
-            <span>Apply Now — Recruitment Form</span>
+            <span className="live-pulse-dot results-dot" />
+            <span>Round 1 Results Out! Check out →</span>
             <ArrowUpRight size={16} className="btn-icon" />
           </a>
 
