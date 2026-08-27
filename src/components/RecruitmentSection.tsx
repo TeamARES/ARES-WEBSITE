@@ -5,11 +5,11 @@ import { ArrowUpRight } from 'lucide-react';
 import { SumoBotModel } from './SumoBotModel';
 
 const STAGES = [
-  { num: 1, label: 'STAGE 01', title: 'Discover ARES', desc: 'Attend our orientation session and explore our vision, projects, culture, and the opportunities waiting for you.' },
-  { num: 2, label: 'STAGE 02', title: 'Submit Your Application', desc: 'Fill out the recruitment form and choose the department where your skills and interests belong.' },
-  { num: 3, label: 'STAGE 03', title: 'Showcase Your Skills', desc: 'Complete the department-specific task or technical assessment designed to evaluate your creativity, knowledge, and problem-solving abilities. (For Electronics and Mechanical, this may include an assessment.)' },
-  { num: 4, label: 'STAGE 04', title: 'Personal Interview', desc: 'Interact with our core members in a personal interview where we get to know your passion, mindset, and potential.' },
-  { num: 5, label: 'STAGE 05', title: 'Welcome to ARES', desc: 'Congratulations! You’re now part of ARES Robotics Society—ready to innovate, collaborate, and build the future with us.' }
+  { num: 1, label: 'STAGE 01', title: 'Discover ARES & Round 1', desc: 'Orientation session and initial application phase. Round 1 submissions are now closed.' },
+  { num: 2, label: 'STAGE 02', title: 'Round 1 Results Out!', desc: 'Shortlisted candidates list for technical tasks and personal interviews has been published! Check your name in the results spreadsheet.' },
+  { num: 3, label: 'STAGE 03', title: 'Tasks & Assessments', desc: 'Complete department-specific task or technical assessment evaluating creativity, practical skills, and problem solving.' },
+  { num: 4, label: 'STAGE 04', title: 'Personal Interview', desc: 'Interact with core team members in a personal interview to showcase your passion, mindset, and technical drive.' },
+  { num: 5, label: 'STAGE 05', title: 'Welcome to ARES', desc: 'Congratulations! You are now part of ARES Robotics Society—ready to innovate, collaborate, and build the future.' }
 ];
 
 export const RecruitmentSection: React.FC = () => {
@@ -17,7 +17,7 @@ export const RecruitmentSection: React.FC = () => {
   const [progress, setProgress] = useState(0); // 0 to 1 across full scroll
   const [activeStage, setActiveStage] = useState(-1);
 
-  const RECRUITMENT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfEyxb0q6qqYU2g7sbT7lanZ9ZSL3lmWM4sxK-B_KOCrXX80A/viewform";
+  const RECRUITMENT_RESULTS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgGalZjXIiN5G0cfgOVr59lBOrdZhhL7QDKFeFnL1RqoNMLTnwHMD8SOlUZ8IAxm8krj87mX68Wr01/pubhtml";
 
   useEffect(() => {
     const onScroll = () => {
@@ -35,7 +35,8 @@ export const RecruitmentSection: React.FC = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Bot X position: 0% at start, 100% at end of track
+  // Bot X position: mapped to camera visible viewport range
+  const targetX = (progress - 0.5) * (typeof window !== 'undefined' && window.innerWidth <= 768 ? 2.4 : 5.6);
   const botPercent = progress * 100;
 
   return (
@@ -51,7 +52,7 @@ export const RecruitmentSection: React.FC = () => {
         {/* Full-page 3D canvas overlay — transparent, no clipping */}
         <Canvas
           className="sumo-bot-canvas"
-          camera={{ position: [0, 0.5, 5], fov: 50 }}
+          camera={{ position: [0, 0.2, 5], fov: 50 }}
           gl={{ alpha: true, antialias: true }}
           onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
           style={{
@@ -61,13 +62,15 @@ export const RecruitmentSection: React.FC = () => {
             height: '100%',
             pointerEvents: 'none',
             background: 'transparent',
+            zIndex: 5,
           }}
         >
-          <ambientLight intensity={0.8} />
-          <spotLight position={[5, 5, 5]} angle={0.2} penumbra={1} intensity={1.5} />
+          <ambientLight intensity={1.2} />
+          <directionalLight position={[5, 10, 7]} intensity={1.8} />
+          <directionalLight position={[-5, -2, -5]} intensity={0.8} />
           <Environment preset="city" />
           <React.Suspense fallback={null}>
-            <SumoBotModel targetX={(progress - 0.5) * 8} />
+            <SumoBotModel targetX={targetX} />
           </React.Suspense>
         </Canvas>
 
@@ -110,14 +113,14 @@ export const RecruitmentSection: React.FC = () => {
               {stage.num === 2 && (
                 <div style={{ marginTop: '16px' }}>
                   <a
-                    href={RECRUITMENT_FORM_URL}
+                    href={RECRUITMENT_RESULTS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="recruitment-highlight-btn"
+                    className="recruitment-results-btn"
                     style={{ pointerEvents: 'auto' }}
                   >
-                    <span className="live-pulse-dot" />
-                    <span>Fill Recruitment Form</span>
+                    <span className="live-pulse-dot results-dot" />
+                    <span>ARES Recruitment Round 1 Results Out! Check out →</span>
                     <ArrowUpRight size={16} className="btn-icon" />
                   </a>
                 </div>
