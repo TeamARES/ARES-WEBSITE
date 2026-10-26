@@ -1,23 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
-import { ArrowUpRight } from 'lucide-react';
 import { SumoBotModel } from './SumoBotModel';
 
 const STAGES = [
-  { num: 1, label: 'STAGE 01', title: 'Discover ARES & Round 1', desc: 'Orientation session and initial application phase. Round 1 submissions are now closed.' },
-  { num: 2, label: 'STAGE 02', title: 'Round 1 Results Out!', desc: 'Shortlisted candidates list for technical tasks and personal interviews has been published! Check your name in the results spreadsheet.' },
-  { num: 3, label: 'STAGE 03', title: 'Tasks & Assessments', desc: 'Complete department-specific task or technical assessment evaluating creativity, practical skills, and problem solving.' },
-  { num: 4, label: 'STAGE 04', title: 'Personal Interview', desc: 'Interact with core team members in a personal interview to showcase your passion, mindset, and technical drive.' },
-  { num: 5, label: 'STAGE 05', title: 'Welcome to ARES', desc: 'Congratulations! You are now part of ARES Robotics Society—ready to innovate, collaborate, and build the future.' }
+  { num: 1, label: 'STAGE 01', title: 'Discover ARES & Round 1', desc: 'Orientation session and initial application phase.' },
+  { num: 2, label: 'STAGE 02', title: 'Tasks & Assessments', desc: 'Complete department-specific task or technical assessment evaluating creativity, practical skills, and problem solving.' },
+  { num: 3, label: 'STAGE 03', title: 'Personal Interview', desc: 'Interact with core team members in a personal interview to showcase your passion, mindset, and technical drive.' },
+  { num: 4, label: 'STAGE 04', title: 'Welcome to ARES', desc: 'Congratulations! You are now part of ARES Robotics Society—ready to innovate, collaborate, and build the future.' }
 ];
 
 export const RecruitmentSection: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0); // 0 to 1 across full scroll
   const [activeStage, setActiveStage] = useState(-1);
-
-  const RECRUITMENT_RESULTS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgGalZjXIiN5G0cfgOVr59lBOrdZhhL7QDKFeFnL1RqoNMLTnwHMD8SOlUZ8IAxm8krj87mX68Wr01/pubhtml";
 
   useEffect(() => {
     const onScroll = () => {
@@ -110,21 +106,6 @@ export const RecruitmentSection: React.FC = () => {
               <div className="timeline-date">{stage.label}</div>
               <div className="h-timeline-title">{stage.title}</div>
               <div className="h-timeline-desc">{stage.desc}</div>
-              {stage.num === 2 && (
-                <div style={{ marginTop: '16px' }}>
-                  <a
-                    href={RECRUITMENT_RESULTS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="recruitment-results-btn"
-                    style={{ pointerEvents: 'auto' }}
-                  >
-                    <span className="live-pulse-dot results-dot" />
-                    <span>ARES Recruitment Round 1 Results Out! Check out →</span>
-                    <ArrowUpRight size={16} className="btn-icon" />
-                  </a>
-                </div>
-              )}
             </div>
           ))}
         </div>

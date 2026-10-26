@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Sun, Moon, Menu, X, ChevronDown, ArrowUpRight } from 'lucide-react';
+import { Sun, Moon, Menu, X, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const WhatsAppIcon = ({ size = 28, className = "" }) => (
@@ -25,8 +25,6 @@ export const Navbar: React.FC = () => {
   const mobileDropdownRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
   const location = useLocation();
-
-  const RECRUITMENT_RESULTS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgGalZjXIiN5G0cfgOVr59lBOrdZhhL7QDKFeFnL1RqoNMLTnwHMD8SOlUZ8IAxm8krj87mX68Wr01/pubhtml";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -152,19 +150,6 @@ export const Navbar: React.FC = () => {
       </ul>
 
       <div className="nav-right">
-        {/* Highlighted Green Results CTA Button */}
-        <a
-          href={RECRUITMENT_RESULTS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="recruitment-results-btn"
-          title="ARES Recruitment Round 1 Results Out!"
-        >
-          <span className="live-pulse-dot results-dot" />
-          <span>Round 1 Results Out</span>
-          <ArrowUpRight size={15} className="btn-icon" />
-        </a>
-
         <button
           onClick={toggleTheme}
           className="btn-theme-toggle"
@@ -226,18 +211,6 @@ export const Navbar: React.FC = () => {
 
       {mobileMenuOpen && (
         <div className="mobile-dropdown animate-pop-in">
-          <a
-            href={RECRUITMENT_RESULTS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="recruitment-results-btn mobile-recruitment-btn"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <span className="live-pulse-dot results-dot" />
-            <span>Round 1 Results Out! Check out →</span>
-            <ArrowUpRight size={16} className="btn-icon" />
-          </a>
-
           <div className="mobile-nav-section-title">Navigation</div>
 
           {navItems.map((item) => (
