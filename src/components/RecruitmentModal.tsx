@@ -1,122 +1,73 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { X, ArrowUpRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowUpRight, X } from 'lucide-react';
 
-const RECRUITMENT_RESULTS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRgGalZjXIiN5G0cfgOVr59lBOrdZhhL7QDKFeFnL1RqoNMLTnwHMD8SOlUZ8IAxm8krj87mX68Wr01/pubhtml";
+const MOKSHA_EVENTS_URL = 'https://www.mokshansut.com/events';
 
 export const RecruitmentModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (!isOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsOpen(false);
-      }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
     };
 
     window.addEventListener('keydown', handleKeyDown);
-
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => console.log('Autoplay blocked:', err));
-    }
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen]);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   if (!isOpen) return null;
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
   return (
-    <div 
-      className="modal-overlay" 
-      onClick={handleClose}
+    <div
+      className="modal-overlay"
+      onClick={() => setIsOpen(false)}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="modal-recruitment-title"
+      aria-labelledby="dust-storm-title"
     >
-      <div 
-        className="modal-card animate-pop-in" 
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Modal Header */}
+      <div className="modal-card animate-pop-in event-announcement-modal" onClick={(event) => event.stopPropagation()}>
         <div className="modal-header">
           <div className="modal-title-group">
-            <span className="live-pulse-dot results-dot" />
-            <span id="modal-recruitment-title" className="modal-badge-text" style={{ color: '#34D399' }}>
-              ROUND 1 RESULTS OUT!
-            </span>
+            <span className="modal-badge-text">ARES × Moksha '26</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <button 
-              className="modal-close-btn" 
-              onClick={toggleMute}
-              aria-label={isMuted ? "Unmute video" : "Mute video"}
-              title={isMuted ? "Click to Unmute" : "Click to Mute"}
-            >
-              {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-            </button>
-            <button 
-              className="modal-close-btn" 
-              onClick={handleClose}
-              aria-label="Close recruitment announcement"
-              title="Close (Esc)"
-            >
-              <X size={18} />
-            </button>
+          <button
+            className="modal-close-btn"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close event announcement"
+            title="Close (Esc)"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="modal-body event-announcement-body">
+          <iframe
+            src="https://www.instagram.com/p/De8h6w1Sqld/embed/"
+            title="Dust Storm Recovery Instagram announcement"
+            className="event-instagram-embed"
+            scrolling="no"
+            allowTransparency
+          />
+          <div className="event-announcement-copy">
+            <h2 id="dust-storm-title">Dust Storm Recovery</h2>
+            <p>Work together as Mars Rover Operator and Mission Control to survive a severe dust storm, restore communication, and navigate critical challenges.</p>
+            <dl className="event-announcement-details">
+              <div><dt>When</dt><dd>30 October · 1–3 PM</dd></div>
+              <div><dt>Where</dt><dd>Mini Audi 1</dd></div>
+            </dl>
           </div>
         </div>
 
-        {/* Modal Body with Recruitment Video */}
-        <div className="modal-body">
-          <div className="modal-image-wrapper">
-            <video 
-              ref={videoRef}
-              src="/recruitment-video.mp4" 
-              className="modal-poster-img"
-              autoPlay
-              muted
-              playsInline
-              controls
-              onEnded={handleClose}
-            />
-          </div>
-        </div>
-
-        {/* Modal Footer with Call To Action */}
         <div className="modal-footer">
           <a
-            href={RECRUITMENT_RESULTS_URL}
+            href={MOKSHA_EVENTS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="recruitment-results-btn modal-cta-btn"
-            onClick={handleClose}
+            className="modal-event-cta"
           >
-            <Sparkles size={16} />
-            <span>ARES Recruitment Round 1 Results Out! Check out →</span>
-            <ArrowUpRight size={18} className="btn-icon" />
+            View Dust Storm Recovery on Moksha
+            <ArrowUpRight size={18} aria-hidden="true" />
           </a>
-
-          <div className="modal-timer-info" style={{ justifyContent: 'center' }}>
-            <button className="modal-dismiss-text-btn" onClick={handleClose}>
-              Dismiss Announcement
-            </button>
-          </div>
         </div>
       </div>
     </div>
