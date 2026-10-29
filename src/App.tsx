@@ -6,7 +6,6 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { Team } from './pages/Team';
-import { RecruitmentModal } from './components/RecruitmentModal';
 
 // Helper to scroll to top on route change
 function ScrollToTop() {
@@ -90,7 +89,6 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <LenisSetup />
-      <RecruitmentModal />
       <div className="app-container tech-grid-bg">
         <Navbar />
         <Routes>
