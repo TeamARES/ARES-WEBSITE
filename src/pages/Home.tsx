@@ -2,6 +2,7 @@ import React from 'react';
 import { HeroSection } from '../components/HeroSection';
 import { AboutAresSection } from '../components/AboutAresSection';
 import { DepartmentsSection } from '../components/DepartmentsSection';
+import { FeaturedEventSection } from '../components/FeaturedEventSection';
 import { ProjectsSection } from '../components/ProjectsSection';
 import { NotableAlumniSection } from '../components/NotableAlumniSection';
 import { CompetitionsSection } from '../components/CompetitionsSection';
@@ -14,6 +15,7 @@ export const Home: React.FC = () => {
       <HeroSection />
       <AboutAresSection />
       <DepartmentsSection />
+      <FeaturedEventSection />
       <ProjectsSection />
       <NotableAlumniSection />
       <CompetitionsSection />
